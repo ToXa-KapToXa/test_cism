@@ -62,7 +62,7 @@ class Reader:
             read_strings - список фраз, считанных из файла(ов)
         """
 
-        with open(f'datasets/{self.mark}/{self.namefile}', encoding='utf-8') as file:
+        with open(f'bot/datasets/{self.mark}/{self.namefile}', encoding='utf-8') as file:
             read = file.readlines()
             read_res = []
             for i in read:
@@ -80,7 +80,7 @@ class Reader:
         """
 
         read = []
-        with ZipFile(f'datasets/{self.mark}/{self.namefile}', 'r') as zipp:
+        with ZipFile(f'bot/datasets/{self.mark}/{self.namefile}', 'r') as zipp:
             for item in zipp.infolist():
                 if item.filename.split('.')[-1] == 'txt':
                     with zipp.open(item.filename, mode='r') as file:
@@ -100,18 +100,18 @@ class Reader:
         """
 
         read = []
-        with TarFile.open(f'datasets/{self.mark}/{self.namefile}', 'r') as tar:
-            tar.extractall(path='tarfiles')
-        files = os.listdir('tarfiles')
+        with TarFile.open(f'bot/datasets/{self.mark}/{self.namefile}', 'r') as tar:
+            tar.extractall(path='bot/tarfiles')
+        files = os.listdir('bot/tarfiles')
         for file in files:
             if file.endswith('txt'):
-                with open(rf'tarfiles/{file}', encoding='utf-8') as f:
+                with open(rf'bot/tarfiles/{file}', encoding='utf-8') as f:
                     strings = f.readlines()
                     for i in strings:
                         i = i.replace('\n', '')
                         if i and i != ' ':
                             read.append(i)
-            os.remove(rf'tarfiles/{file}')
+            os.remove(rf'bot/tarfiles/{file}')
         return read
 
     def read_xlsx(self):
@@ -123,7 +123,7 @@ class Reader:
         """
 
         read = []
-        strings = pyexcel.get_array(file_name=f'datasets/{self.mark}/{self.namefile}')
+        strings = pyexcel.get_array(file_name=f'bot/datasets/{self.mark}/{self.namefile}')
         for string in strings:
             for j in string:
                 if j and j != ' ' and j != '\n':
@@ -140,7 +140,7 @@ class Reader:
 
         read = []
         flag = True
-        for row in csv.reader(open(f'datasets/{self.mark}/{self.namefile}', encoding='utf-8'), delimiter=';'):
+        for row in csv.reader(open(f'bot/datasets/{self.mark}/{self.namefile}', encoding='utf-8'), delimiter=';'):
             for i in row:
                 if flag:
                     a = i[1:]

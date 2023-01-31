@@ -1,6 +1,6 @@
 import unittest
 import pyexcel
-from result_xlsx import Result
+from bot.result_xlsx import Result
 
 
 class TestResult(unittest.TestCase):

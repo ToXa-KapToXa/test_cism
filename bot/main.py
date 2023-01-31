@@ -125,7 +125,7 @@ def button(update, context):
         variant = query.data
         variants = ['tg', 'course', 'markets']
         if variant in variants:
-            datasets = listdir(f'datasets/{variant}')
+            datasets = listdir(f'bot/datasets/{variant}')
             keyboard_datasets = []
             for key in datasets:
                 keyboard_datasets.append([InlineKeyboardButton(key, callback_data=key)])

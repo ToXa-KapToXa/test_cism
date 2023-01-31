@@ -1,5 +1,5 @@
 import unittest
-from reader import Reader
+from bot.reader import Reader
 
 
 class TestReader(unittest.TestCase):
